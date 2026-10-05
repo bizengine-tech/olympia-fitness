@@ -7,8 +7,37 @@ import ProductCard from "@/components/ProductCard";
 import ParallaxHero from "@/components/motion/ParallaxHero";
 import ScrollReveal from "@/components/motion/ScrollReveal";
 import TiltCard from "@/components/motion/TiltCard";
+import {
+  BriefcaseBusiness,
+  Boxes,
+  Headphones,
+  Wrench,
+} from "lucide-react";
 
 const NEW_ARRIVALS = PRODUCTS.filter((p) => p.isNew).slice(0, 4);
+
+const SERVICES = [
+  {
+    icon: BriefcaseBusiness,
+    title: "Consultation\nand Design",
+    body: "We will work with you to understand your goals and create a customized plan for your gym.",
+  },
+  {
+    icon: Boxes,
+    title: "Equipment\nSupply",
+    body: "We have a wide range of top-quality gym equipment to choose from, including cardio, strength training equipment and more.",
+  },
+  {
+    icon: Wrench,
+    title: "Installation\nand Setup",
+    body: "Our team of experts will handle all aspects of setup, including delivery, installation, and testing of equipment.",
+  },
+  {
+    icon: Headphones,
+    title: "Ongoing\nSupport",
+    body: "We are dedicated to your success and offer ongoing support to ensure your gym is running smoothly.",
+  },
+];
 
 const WHY_US = [
   {
@@ -60,6 +89,47 @@ export default function HomePage() {
           Browse Equipment
         </Link>
       </ParallaxHero>
+
+      {/* Services */}
+      <section className="bg-[#f2f2f2] py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+          <ScrollReveal>
+            <div className="mb-12 text-center">
+              <h2 className="font-display text-5xl sm:text-6xl uppercase tracking-wide text-olympia-black">
+                Our Services
+              </h2>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-4 xl:grid-cols-4">
+            {SERVICES.map((service, i) => {
+              const Icon = service.icon;
+
+              return (
+                <ScrollReveal key={service.title} delay={i * 0.08} y={24} rotate={2}>
+                  <div className="group flex h-full min-h-[420px] flex-col justify-between rounded-[28px] border border-[#d9d9d9] bg-[#f8f8f8] p-6 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.7)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(0,0,0,0.08)] sm:p-7">
+                    <div className="mb-8 flex justify-center">
+                      <div className="flex h-20 w-20 items-center justify-center rounded-full border border-[#d3d3d3] bg-[#f4f4f4] text-[#ff0000] shadow-inner shadow-white/80">
+                        <Icon className="h-10 w-10" strokeWidth={2.2} />
+                      </div>
+                    </div>
+
+                    <div className="text-center text-olympia-black">
+                      <h3 className="mb-5 whitespace-pre-line text-3xl sm:text-[2.1rem] font-medium leading-[1.05] tracking-[-0.04em]">
+                        {service.title}
+                      </h3>
+
+                      <p className="mx-auto max-w-[22rem] text-base leading-relaxed text-black/65">
+                        {service.body}
+                      </p>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
       {/* Category tiles */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-20">
